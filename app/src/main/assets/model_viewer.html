@@ -1,0 +1,112 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8" />-->
+<!--    <script type="module"-->
+<!--            src="https://cdn.jsdelivr.net/npm/@google/model-viewer@1.12.1/dist/model-viewer.min.js">-->
+<!--    </script>-->
+
+<!--    <style>-->
+<!--        html, body {-->
+<!--          margin: 0;-->
+<!--          padding: 0;-->
+<!--          height: 100%;-->
+<!--          background-color: black;-->
+<!--          overflow: hidden;-->
+<!--        }-->
+<!--        model-viewer {-->
+<!--          width: 100%;-->
+<!--          height: 100%;-->
+<!--          background-color: black;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<model-viewer id="mv" camera-controls-->
+<!--              auto-rotate-->
+<!--              ar-->
+<!--              exposure="1"-->
+<!--              shadow-intensity="1"-->
+<!--              disable-zoom-->
+<!--              background-color="#000000">-->
+<!--</model-viewer>-->
+
+<!--<script>-->
+<!--    window.loadModel = async function(modelData) {-->
+<!--        const mv = document.getElementById('mv');-->
+<!--        console.log("🎯 Injecting model...");-->
+<!--        mv.src = modelData;-->
+
+<!--        mv.addEventListener('load', () => console.log("✅ Model successfully loaded!"));-->
+<!--        mv.addEventListener('error', e => {-->
+<!--            console.error("❌ Model load failed:", e);-->
+<!--            document.body.style.backgroundColor = "#440000";-->
+<!--            alert("❌ Model load failed!");-->
+<!--        });-->
+
+<!--        mv.addEventListener('progress', (ev) => {-->
+<!--            console.log("⏳ Loading progress:", ev.detail.totalProgress);-->
+<!--        });-->
+<!--    };-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script type="module"
+            src="https://cdn.jsdelivr.net/npm/@google/model-viewer@1.12.1/dist/model-viewer.min.js">
+    </script>
+
+    <style>
+        html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          background-color: black;
+          overflow: hidden;
+        }
+        model-viewer {
+          width: 100%;
+          height: 100%;
+          background-color: black;
+        }
+    </style>
+</head>
+<body>
+<model-viewer id="mv" camera-controls
+              auto-rotate
+              ar
+              exposure="1"
+              shadow-intensity="1"
+              disable-zoom
+              background-color="#000000">
+</model-viewer>
+
+<script>
+    // Get model name from URL query params
+    const params = new URLSearchParams(window.location.search);
+    const modelName = (params.get("model") || "level1").toLowerCase();
+
+    // Set the model URL dynamically
+    document.getElementById("mv").src ="models/" modelName + ".glb";
+
+    console.log("🎯 Loading model dynamically:", modelName + ".glb");
+
+    const mv = document.getElementById('mv');
+    mv.addEventListener('load', () => console.log("✅ Model loaded successfully!"));
+    mv.addEventListener('error', e => {
+        console.error("❌ Failed to load model:", e);
+        alert("❌ Failed to load model: " + modelName + ".glb");
+    });
+</script>
+</body>
+</html>
+
